@@ -1,0 +1,237 @@
+:root {
+  --primary-color: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-light: #e0e7ff;
+  --success-color: #10b981;
+  --error-color: #ef4444;
+  --warning-color: #f59e0b;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --border-color: #9ca3af;
+  --border-hover: #6b7280;
+  --border-focus: #4f46e5;
+  --background: #ffffff;
+  --input-background: #f9fafb;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1),0 2px 4px -1px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1),0 4px 6px -2px rgba(0,0,0,0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1),0 10px 10px -5px rgba(0,0,0,0.04);
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+.container {
+  max-width: 960px;
+  height: 65vw;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+h1 {
+      font-family: "Poppins", "Segoe UI", sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #4a90e2 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(2px 2px 4px rgba(44, 62, 80, 0.3));
+      margin-bottom: 40px;
+      position: relative;
+      animation: gradientShift 4s ease-in-out infinite;
+      text-align: center;
+  }
+
+
+.main {
+  max-width: 520px;
+  margin: 40px auto;
+  padding: 4rem 3rem;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  position: relative;
+  transition: all var(--transition-normal);
+  border: 3px solid rgba(0,0,0,0.2);
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.main::before {
+  content: '';
+  position: absolute;
+  top:0; left:0; right:0;
+  height:4px;
+  background: linear-gradient(90deg,var(--primary-color),var(--success-color),var(--primary-color));
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  transition: all var(--transition-normal);
+}
+
+.main:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.main:hover::before {
+  height:6px;
+  background: linear-gradient(90deg,var(--primary-color),var(--success-color),var(--warning-color),var(--primary-color));
+}
+
+.main div {
+  margin-bottom: 2.5rem;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideInUp 0.4s ease forwards;
+}
+.main div:nth-child(1) { animation-delay: 0.1s; }
+.main div:nth-child(2) { animation-delay: 0.2s; }
+.main div:nth-child(3) { animation-delay: 0.3s; }
+.main div:nth-child(4) { animation-delay: 0.4s; }
+.main div:nth-child(5) { animation-delay: 0.5s; }
+.main div:nth-child(6) { animation-delay: 0.6s; }
+.main div:nth-child(7) { animation-delay: 0.7s; }
+.main div:nth-child(8) { animation-delay: 0.8s; }
+
+label {
+  display: block;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+  position: relative;
+  transition: all var(--transition-fast);
+}
+label::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary-color);
+  transition: width var(--transition-normal);
+}
+div:focus-within label::after { width: 100%; }
+
+input[type="text"], input[type="number"], input[type="date"], select {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  color: var(--text-primary);
+  background: var(--input-background);
+  box-sizing: border-box;
+  transition: all var(--transition-normal);
+  position: relative;
+  z-index:1;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+}
+input:hover, select:hover {
+  border-color: var(--border-hover);
+  background: var(--background);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1),0 0 0 1px rgba(0,0,0,0.1);
+}
+input:focus, select:focus {
+  border-color: var(--border-focus);
+  background: var(--background);
+  box-shadow: 0 0 0 3px rgba(79,70,229,0.1), inset 0 1px 3px rgba(0,0,0,0.1);
+  outline:none;
+  transform: translateY(-1px);
+}
+input:focus::placeholder { color: transparent; transform: translateY(-10px); }
+
+input[type="radio"] {
+  width:1.25rem; height:1.25rem; margin-right:0.5rem;
+  cursor:pointer; appearance:none; border:3px solid var(--border-color);
+  border-radius:50%; position:relative; transition: all var(--transition-normal);
+  vertical-align: middle; background:transparent;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+}
+input[type="radio"]:hover {
+  border-color: var(--primary-color);
+  background: rgba(79,70,229,0.05);
+  box-shadow:0 0 0 4px rgba(79,70,229,0.1), inset 0 1px 2px rgba(0,0,0,0.05);
+  transform: scale(1.05);
+}
+input[type="radio"]:checked {
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+  transform: scale(1.1);
+  box-shadow: 0 0 0 2px rgba(79,70,229,0.5);
+}
+input[type="radio"]:checked::after {
+  content:'';
+  position:absolute;
+  top:50%; left:50%;
+  width:8px; height:8px;
+  border-radius:50%;
+  background:#fff;
+  transform: translate(-50%,-50%);
+  animation: radioCheck 0.3s ease;
+}
+input[type="radio"] + label { display:inline-block; margin-right:2rem; cursor:pointer; font-weight:500; color:var(--text-primary); }
+input[type="radio"]:checked + label { color: var(--primary-color); font-weight:600; }
+
+select { 
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position:right 0.75rem center;
+  background-repeat:no-repeat;
+  background-size:1.5em 1.5em;
+  padding-right:3rem;
+  appearance:none;
+}
+
+input.ng-invalid.ng-touched, select.ng-invalid.ng-touched { border-color: var(--error-color); box-shadow:0 0 0 3px rgba(239,68,68,0.2); animation:shake 0.3s ease; }
+.error-message { color: var(--error-color); font-size:0.875rem; margin-top:0.375rem; display:flex; align-items:center; font-weight:500; }
+.error-message::before { content:'⚠'; margin-right:0.375rem; font-size:1rem; }
+
+.main button[type="submit"] {
+  margin-top:1.5rem;
+  width:100%; padding:1rem 2rem; font-size:1rem; font-weight:600;
+  color:black; background:linear-gradient(135deg,var(--primary-color),var(--primary-hover));
+  border-radius:var(--radius-md); cursor:pointer; transition:all var(--transition-normal);
+  position:relative; overflow:hidden; letter-spacing:0.025em; text-transform:uppercase; box-shadow:var(--shadow-md); border-color:var(--primary-color); opacity:0.6;
+}
+.main button[type="submit"]::before {
+  content:''; position:absolute; top:0; left:-100%; width:100%; height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent);
+  transition:left 0.5s ease;
+}
+.main button[type="submit"]:hover:not([disabled]) { background:linear-gradient(135deg,var(--primary-hover),var(--primary-color)); transform:translateY(-2px); box-shadow:var(--shadow-lg); opacity:1; }
+.main button[type="submit"]:hover:not([disabled])::before { left:100%; }
+.main button[disabled], .main button.loading { background:linear-gradient(135deg,#9ca3af,#6b7280); cursor:not-allowed; transform:none; box-shadow:var(--shadow-sm); opacity:0.55; }
+.main button.loading::after { content:''; position:absolute; top:50%; right:1rem; width:16px; height:16px; margin-top:-8px; border:2px solid transparent; border-top-color:white; border-radius:50%; animation:spin 1s linear infinite; }
+
+@keyframes slideInUp { to { opacity:1; transform:translateY(0); } }
+@keyframes shake { 0%,100%{transform:translateX(0);} 20%,60%{transform:translateX(-3px);} 40%,80%{transform:translateX(3px);} }
+@keyframes radioCheck {0%{transform:translate(-50%,-50%) scale(0);}50%{transform:translate(-50%,-50%) scale(1.2);}100%{transform:translate(-50%,-50%) scale(1);}}
+@keyframes spin { to { transform:rotate(360deg); } }
+
+@media (max-width: 640px) {
+  .main { margin:1rem; padding:1.5rem; border-radius: var(--radius-md); }
+  input[type="text"], input[type="number"], input[type="date"], select { font-size:16px; padding:0.75rem; }
+}
+@media (max-width: 480px) {
+  .main { margin:0.5rem; padding:1.25rem; }
+  input[type="radio"] + label { margin-right:1rem; font-size:0.875rem; }
+  .error-message { font-size:0.8rem; }
+}
+
+@media (prefers-contrast: high) {
+  :root { --border-color:#000000; --text-secondary:#000000; }
+  .main input, .main select { border-width:3px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+}

@@ -1,0 +1,154 @@
+<div class="edit_container">
+
+<h1>Record Edit Page</h1>
+
+<div class="main">
+
+  <form [formGroup]="Edit_Form" (ngSubmit)="On_Save()">
+    <div>
+      <label for="userId">
+        user id
+      </label>
+
+      <input id="userId" formControlName="userId" type="text" placeholder="輸入 user id" />
+      
+      @if (Edit_Form.controls.userId.touched && Edit_Form.controls.userId.invalid) {
+        @switch (true) {
+          @case (Edit_Form.controls.userId.hasError('required')) {
+            <small class="error-message">必填</small>
+          }
+
+        }
+
+      }
+    </div>
+
+    <div>
+      <label for="date">
+        date
+      </label>
+
+      <input id="date" formControlName="date" type="date" placeholder="輸入 date" />
+      
+      @if (Edit_Form.controls.date.touched && Edit_Form.controls.date.invalid) {
+        @switch (true) {
+          @case (Edit_Form.controls.date.hasError('required')) {
+            <small class="error-message">必填</small>
+          }
+        }
+
+      }
+    </div>
+  <div>
+    <label for="type">
+      支出類型  
+    </label>
+
+     <label for="expense">
+      支出
+    </label>
+    <input id="expense" value="expense" formControlName="type" type="radio"  />
+   
+    <label for="income">
+      收入
+    </label>
+    <input id="income" value="income" formControlName="type" type="radio"  />
+
+    @if (Edit_Form.controls.type.touched && Edit_Form.controls.type.invalid)
+    {
+      @switch (true) {
+        @case (Edit_Form.controls.type.hasError('required')) {
+          <small class="error-message">必填</small>
+        }
+      }
+    }
+  </div>
+
+    <div>
+      <label for="amount">
+        amount
+      </label>
+
+      <input id="amount" formControlName="amount" type="number" placeholder="輸入 amount" />
+      
+      @if (Edit_Form.controls.amount.touched && Edit_Form.controls.amount.invalid) {
+        @switch (true) {
+          @case (Edit_Form.controls.amount.hasError('required')) {
+            <small class="error-message">必填</small>
+          }
+        }
+
+      }
+    </div>
+
+    <div>
+      <label for="categoryId">
+        category
+      </label>
+
+      <select id="categoryId" formControlName="categoryId" >
+        <option value="" disabled selected>選擇類別</option>
+        @for (category of expenseCategories; track $index) {
+          <option [value]="category">{{ category }}</option>
+        }
+      </select>
+      
+      @if (Edit_Form.controls.categoryId.touched && Edit_Form.controls.categoryId.invalid) {
+        @switch (true) {
+          @case (Edit_Form.controls.categoryId.hasError('required')) {
+            <small class="error-message">必填</small>
+          }
+        }
+
+      }
+    </div>
+
+    <div>
+      <label for="description">
+        description
+      </label>
+
+      <input id="description" formControlName="description" type="text" placeholder="輸入 description" />
+      
+      @if (Edit_Form.controls.description.touched && Edit_Form.controls.description.invalid) {
+        @switch (true) {
+          @case (Edit_Form.controls.description.hasError('required')) {
+            <small class="error-message">必填</small>
+          }
+        }
+
+      }
+
+    </div>
+
+    <div>
+      <label for="paymentMethod">
+        paymentMethod
+      </label>
+
+      <select id="paymentMethod" formControlName="paymentMethod" >
+        <option value="" disabled selected>選擇付款方式</option>
+        @for (paymentMethod of pay_method; track $index) {
+          <option [value]="paymentMethod">{{ paymentMethod }}</option>
+        }
+      </select>
+
+    </div>
+
+
+    <div class="form-actions">
+        <button type="submit" >
+        儲存
+        </button>
+
+        <button type="button" (click)="On_Cancel()" >
+        取消
+        </button>
+    </div>
+  </form>
+
+</div>
+
+
+
+</div>

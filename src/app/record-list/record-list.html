@@ -1,0 +1,73 @@
+<div class="list_container">
+  <h1>我的紀錄列表</h1>
+
+  <menu-navigation></menu-navigation>
+  <div class="item-list">
+  
+    <div class="item-card card">
+    @for (item of mockRecords; track item.id) 
+    {
+        <div class="item-top">
+            <h2 class="item-title">紀錄 #{{ item.id }}</h2>
+        </div>
+      
+     
+        <div class="item-body">
+            @if(edit_item_id() === item.id) {
+                <record-edit 
+                [record]="item"
+                (save)="On_Save($event)"
+                (cancel)="On_Cancel()" 
+                >
+                </record-edit>
+            }
+            @else {
+                <div class="item-fields">
+                <div class="field">
+                    <span class="label">User</span>
+                    <span class="value">{{ item.userId }}</span>
+                </div>
+                <div class="field">
+                    <span class="label">日期</span>
+                    <span class="value">{{ item.date }}</span>
+                </div>
+                <div class="field">
+                    <span class="label">類型</span>
+                    <span class="value">{{ item.type }}</span>
+                </div>
+                <div class="field">
+                    <span class="label">金額</span>
+                    <span class="value">{{ item.amount }}</span>
+                </div>
+                <div class="field">
+                    <span class="label">分類</span>
+                    <span class="value">{{ item.categoryId }}</span>
+                </div>
+                <div class="field full-width">
+                    <span class="label">描述</span>
+                    <span class="value">{{ item.description }}</span>
+                </div>
+                <div class="field">
+                    <span class="label">付款方式</span>
+                    <span class="value">{{ item.paymentMethod }}</span>
+                </div>
+                </div>
+
+                <div class="item-actions">
+                    <button class="btn-edit" (click)="edit_action(item)">編輯</button>
+                    <button class="btn-delete" (click)="delete_action(item)">刪除</button>
+                </div>
+            } 
+      
+
+          
+
+        </div>
+        
+        
+    }
+
+    </div>
+
+  </div>
+</div>

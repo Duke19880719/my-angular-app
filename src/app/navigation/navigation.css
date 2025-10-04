@@ -1,0 +1,135 @@
+
+ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+ /* menu container */
+        .menu {
+            position: fixed;
+            top: 30px;
+            left: 50px;
+            list-style: none;
+            z-index: 1000;
+        }
+
+        /* menu 觸發按鈕 */
+        .menu-trigger {
+            position: relative;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background: linear-gradient(135deg,  darkblue, lightblue); 
+            border: 2px solid #3498db; 
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1001;
+        }
+        .menu-trigger h1{
+          font-size:20px;
+          
+        }
+        .menu-trigger:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            border-color: #cdf605;
+            color: white;
+            background: linear-gradient(135deg, #898421, #e2ee05);
+        }
+
+        /* menu item 初始狀態 */
+        .menu-item {
+            position: absolute;
+            font-size: 1.5vw;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(0) scale(0.3) rotate(-10deg);
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            pointer-events: none;
+        }
+
+        /* menu item a 樣式 */
+        .menu-item a {
+            display: block;
+            padding: 12px 20px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,249,250,0.95));
+            border: 1px solid rgba(233, 236, 239, 0.8);
+            border-radius: 25px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            white-space: nowrap;
+            min-width: 120px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .menu-item a:hover {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            transform: translateX(8px) scale(1.05);
+            box-shadow: 0 6px 25px rgba(52, 152, 219, 0.4);
+        }
+
+        /* Hover 效果：顯示所有menu item */
+        .menu:hover .menu-item {
+            font-weight: 800;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(calc(var(--i) * 60px + 60px)) scale(1) rotate(0deg);
+        }
+
+        /* 為不同的menu item添加不同的延遲 */
+        .menu:hover .menu-item:nth-child(2) {
+            transition-delay: 0.1s;
+        }
+
+        .menu:hover .menu-item:nth-child(3) {
+            transition-delay: 0.2s;
+        }
+
+        .menu:hover .menu-item:nth-child(4) {
+            transition-delay: 0.3s;
+        }
+
+        .menu:hover .menu-item:nth-child(5) {
+            transition-delay: 0.4s;
+        }
+
+        .menu:hover .menu-item:nth-child(6) {
+            transition-delay: 0.5s;
+        }
+
+        /* 添加一個延遲區域，防止menu過早關閉 */
+        .menu::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -150px;
+            bottom: -350px;
+            z-index: -1;
+        }
+
+        /* 點擊效果 - 使用 :active 偽類 */
+        .menu-item a:active {
+            transform: translateX(8px) scale(0.95);
+            transition-duration: 0.1s;
+        }

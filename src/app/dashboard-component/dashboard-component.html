@@ -1,0 +1,118 @@
+<div class="dashboard-container">
+  
+  <h1>Personal Finance Dashboard</h1>
+
+    <!-- <ul class="menu">
+      <li class="menu-trigger"><h1>menu</h1> </li>
+      <li class="menu-item"  style="--i:1"><a routerLink="/dashboard">Dashboard</a></li>
+      <li class="menu-item"  style="--i:2"><a routerLink="/record-add">RecordAdd</a></li>
+      <li class="menu-item"  style="--i:3"><a routerLink="/record-edit">RecordEdit</a></li>
+      <li class="menu-item"  style="--i:4"><a routerLink="/record-list">RecordList</a></li>
+    </ul> -->
+    <menu-navigation></menu-navigation>
+  
+  <div class="container0">
+    <div class="card">
+
+      <div class="top">
+        <h1 class="name">Hollow Knight</h1>
+      </div>
+
+      <div class="bottom">
+
+        <div class="left">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShOXezqJnlaokIRrs1YNnQTytEpql1p5VHjQ&s" >
+        </div>
+
+        <div class="right">
+          <div class="amount">總資產 $2,4150</div>
+          <div class="rate">
+           漲幅: -11.4 <span>&#8595;</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container1">
+
+    <div class="card">
+       <h2>月度淨現金流折線圖</h2>
+       <canvas
+        baseChart
+        [data]="lineChartData"
+        [options]="lineChartOptions"
+        [type]="'line'"
+        [legend]="lineChartLegend">
+      </canvas>
+    </div>
+
+    <div class="card">
+      <h2>支出分類圓餅圖</h2>
+      <canvas
+      baseChart
+      [data]="PieChartData"
+      [options]="pieChartOptions"
+      [type]="'pie'"
+      >
+      </canvas>
+    </div>
+
+  </div>
+
+  <div class="container2">
+
+    <div class="card">
+     <h2>預算 VS 實際支出對比圖</h2>
+     <canvas
+      baseChart
+      [data]="bar_data"
+      [options]="baroptions"
+      [type]="'bar'"
+      >
+      </canvas>
+    </div>
+
+
+  </div>
+
+  <div class="container3">
+
+    <div class="card">
+     <h2>資產配置圓餅圖</h2>
+     <canvas
+      baseChart
+      [data]="treemapData"
+      [options]="treemapOptions"
+      [type]="'treemap'"
+      >
+      </canvas>
+    </div>
+
+    <div class="card">
+      <h3>淨資產累積率</h3>
+      <ngx-gauge 
+        [type]="'semi'" 
+        [value]="percentage" 
+        [label]="'完成度'"
+        [append]="'%'"
+        [min]="0"
+        [max]="100"
+        [thick]="15"
+        [cap]="'round'"
+        [thresholds]="{
+          '0': { color: 'red' },
+          '50': { color: 'orange' },
+          '80': { color: 'green' }
+        }">
+      </ngx-gauge>
+
+      <p>目標資產：{{ target | number }} 元</p>
+      <p>目前累積：{{ current | number }} 元</p>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,308 @@
+.edit_container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-family: "Poppins", "Segoe UI", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #4a90e2 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  animation: gradientShift 4s ease-in-out infinite;
+  text-align: center;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.main {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e8ecf1;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* 一般輸入欄位容器 */
+form > div:not(.form-actions) {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* 標籤樣式 */
+label[for] {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 2px;
+}
+
+/* 輸入框統一樣式 */
+input[type="text"],
+input[type="date"],
+input[type="number"],
+select {
+  padding: 11px 14px;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #1f2937;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  outline: none;
+  font-family: inherit;
+}
+
+input[type="text"]:hover,
+input[type="date"]:hover,
+input[type="number"]:hover,
+select:hover {
+  border-color: #9ca3af;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+  color: #9ca3af;
+}
+
+/* Radio 按鈕區塊 */
+form > div:has(input[type="radio"]) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  padding: 12px 20px;
+}
+
+form > div:has(input[type="radio"]) > label[for="type"] {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 6px;
+  order: -1;
+}
+
+/* Label 在左邊 */
+label[for="expense"],
+label[for="income"] {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  margin: 0 6px 0 0;
+  order: 1;
+}
+
+label[for="income"] {
+  order: 3;
+  margin-left: 16px;
+}
+
+/* Radio 按鈕在右邊 */
+input[type="radio"]#expense {
+  order: 2;
+}
+
+input[type="radio"]#income {
+  order: 4;
+}
+
+input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #667eea;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+label[for="expense"]:hover,
+label[for="income"]:hover {
+  color: #667eea;
+}
+
+/* Select 下拉選單 */
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%236b7280' d='M4 6l4 4 4-4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 36px;
+}
+
+select option[disabled] {
+  color: #9ca3af;
+}
+
+/* 錯誤訊息 */
+.error-message {
+  font-size: 0.8rem;
+  color: #dc2626;
+  font-weight: 500;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  animation: slideDown 0.2s ease;
+}
+
+.error-message::before {
+  content: "⚠";
+  font-size: 0.9rem;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 表單有錯誤時的輸入框樣式 */
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: #dc2626;
+}
+
+input.ng-invalid.ng-touched:focus,
+select.ng-invalid.ng-touched:focus {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* 按鈕區域 */
+.form-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 12px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.form-actions button {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.form-actions button[type="submit"] {
+  background: #667eea;
+  color: white;
+}
+
+.form-actions button[type="submit"]:hover {
+  background: #5568d3;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.form-actions button[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
+}
+
+.form-actions button[type="button"] {
+  background: #f3f4f6;
+  color: #4b5563;
+  border: 1px solid #d1d5db;
+}
+
+.form-actions button[type="button"]:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+.form-actions button[type="button"]:active {
+  background: #d1d5db;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+  .edit_container {
+    padding: 24px 16px;
+  }
+
+  .main {
+    padding: 24px;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    margin-bottom: 24px;
+  }
+
+  form {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .edit_container {
+    padding: 20px 12px;
+  }
+
+  .main {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+
+  input[type="text"],
+  input[type="date"],
+  input[type="number"],
+  select {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,155 @@
+<div class="container">
+
+<h1>Record Add Page</h1>
+<menu-navigation></menu-navigation>
+<div class="main">
+
+    <p>理財記錄 </p>
+
+  <form [formGroup]="RecordAddForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="userId">
+        user id
+      </label>
+
+      <input id="userId" formControlName="userId" type="text" placeholder="輸入 user id" />
+      
+      @if (RecordAddForm.controls.userId.touched && RecordAddForm.controls.userId.invalid) {
+        @switch (true) {
+          @case (RecordAddForm.controls.userId.hasError('required')) {
+            <small class="error-message">必填</small>
+          }
+
+        }
+
+      }
+    </div>
+
+    <div>
+      <label for="date">
+        date
+      </label>
+
+      <input id="date" formControlName="date" type="date" placeholder="輸入 date" />
+      
+      @if (RecordAddForm.controls.date.touched && RecordAddForm.controls.date.invalid) {
+        @switch (true) {
+          @case (RecordAddForm.controls.date.hasError('required')) {
+            <small class="error-message">必填</small>
+          }
+        }
+
+      }
+    </div>
+  <div>
+    <label for="type">
+      支出類型  
+    </label>
+
+    <input id="expense" value="expense" formControlName="type" type="radio"  />
+    <label for="expense">
+      支出
+    </label>
+
+    <input id="income" value="income" formControlName="type" type="radio"  />
+    <label for="income">
+      收入
+    </label>
+    @if (RecordAddForm.controls.type.touched && RecordAddForm.controls.type.invalid)
+    {
+      @switch (true) {
+        @case (RecordAddForm.controls.type.hasError('required')) {
+          <small class="error-message">必填</small>
+        }
+      }
+    }
+  </div>
+
+    <div>
+      <label for="amount">
+        amount
+      </label>
+
+      <input id="amount" formControlName="amount" type="number" placeholder="輸入 amount" />
+      
+      @if (RecordAddForm.controls.amount.touched && RecordAddForm.controls.amount.invalid) {
+        @switch (true) {
+          @case (RecordAddForm.controls.amount.hasError('required')) {
+            <small class="error-message">必填</small>
+          }
+        }
+
+      }
+    </div>
+
+    <div>
+      <label for="categoryId">
+        category
+      </label>
+
+      <select id="categoryId" formControlName="categoryId" >
+        <option value="" disabled selected>選擇類別</option>
+        @for (category of expenseCategories; track $index) {
+          <option [value]="category">{{ category }}</option>
+        }
+      </select>
+      
+      @if (RecordAddForm.controls.categoryId.touched && RecordAddForm.controls.categoryId.invalid) {
+        @switch (true) {
+          @case (RecordAddForm.controls.categoryId.hasError('required')) {
+            <small class="error-message">必填</small>
+          }
+        }
+
+      }
+    </div>
+
+    <div>
+      <label for="description">
+        description
+      </label>
+
+      <input id="description" formControlName="description" type="text" placeholder="輸入 description" />
+      
+      @if (RecordAddForm.controls.description.touched && RecordAddForm.controls.description.invalid) {
+        @switch (true) {
+          @case (RecordAddForm.controls.description.hasError('required')) {
+            <small class="error-message">必填</small>
+          }
+        }
+
+      }
+
+    </div>
+
+    <div>
+      <label for="paymentMethod">
+        paymentMethod
+      </label>
+
+      <select id="paymentMethod" formControlName="paymentMethod" >
+        <option value="" disabled selected>選擇付款方式</option>
+        @for (paymentMethod of pay_method; track $index) {
+          <option [value]="paymentMethod">{{ paymentMethod }}</option>
+        }
+      </select>
+
+    </div>
+    <button 
+      type="submit" 
+      class="login-btn"
+      [disabled]="check_submit()"
+      [class.loading]="check_submit()"
+    >
+      Submit
+    </button>
+
+  </form>
+
+</div>
+
+
+
+</div>
+
+
