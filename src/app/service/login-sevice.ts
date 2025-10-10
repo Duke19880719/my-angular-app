@@ -18,9 +18,9 @@ export class LoginService {
   login(data: { username: string ; password: string }) {
     this.check_submit.set(true);
     
-    this.http.post('http://localhost:7276/AngularApi', data).subscribe({
+    this.http.post<{ success: boolean }>('http://localhost:7276/AngularApi/Login', data).subscribe({
       next: (response) => {
-        if(response=='success'){
+        if(response?.success){
           const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
           this.router.navigateByUrl(returnUrl);
           this.user_name_signal.set(data.username);
